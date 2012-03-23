@@ -23,7 +23,12 @@ link git/.gitconfig ~/.gitconfig
 link git/.git-completion.sh ~/.git-completion.sh
 link bash/.dir_colors ~/.dir_colors
 link bash/.bash_jconf ~/.bash_jconf
-link bin/s /usr/local/bin/s
+
+# scripts
+if ! [ -d ~/bin ]; then
+    mkdir ~/bin
+fi
+link bin/s ~/bin/s
 
 # special ssh setup
 link ssh/config ~/.ssh/config
