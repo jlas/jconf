@@ -1,8 +1,20 @@
 #!/bin/sh
 
-alias _mv="mv -b --suffix .bak -f"
+function link {
 
-_mv emacs/.custom_emacs ~/
-_mv emacs/.emacs ~/
-_mv ssh/config ~/.ssh/config
-_mv git/.gitconfig ~/.gitconfig
+    SRC=$1
+    NEW=$2
+
+    if [ -e "$NEW" ] && ! [ -L "$NEW" ]; then
+	mv -f $NEW $NEW.bak
+    fi
+
+    if ! [ -L "$NEW" ]; then
+	ln -s $SRC $NEW
+    fi
+}
+
+link emacs/.custom_emacs ~/.custom_emacs
+link emacs/.emacs ~/.emacs
+link ssh/config ~/.ssh/config
+link git/.gitconfig ~/.gitconfig
