@@ -18,3 +18,14 @@ link emacs/.custom_emacs ~/.custom_emacs
 link emacs/.emacs ~/.emacs
 link ssh/config ~/.ssh/config
 link git/.gitconfig ~/.gitconfig
+link git/.git-completion.sh ~/.git-completion.sh
+link bash/.bash_jconf ~/.bash_jconf
+
+# bash profile setup
+SNIP="[ -f ~/.bash_jconf ] && source ~/.bash_jconf"
+
+if ! grep "$SNIP" ~/.bash_profile >/dev/null; then
+    echo $SNIP >> ~/.bash_profile
+fi
+
+source ~/.bash_profile

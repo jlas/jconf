@@ -1,0 +1,14 @@
+# alias'
+
+alias la="ls -la"
+
+# git completion stuff
+
+source ~/.git-completion.sh
+
+PS1='[\e[0;36m\u\e[0m@\h \W$(__git_ps1 " \e[0;36m%s\e[0m")]$ '
+
+GIT_PS1_SHOWDIRTYSTATE=1
+GIT_PS1_SHOWSTASHSTATE=1
+GIT_PS1_SHOWUNTRACKEDFILES=
+GIT_PS1_SHOWUPSTREAM="auto"
