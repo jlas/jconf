@@ -10,7 +10,7 @@ function link {
     fi
 
     if ! [ -L "$NEW" ]; then
-	ln -s $SRC $NEW
+	ln -s $(pwd)/$SRC $NEW
     fi
 }
 
