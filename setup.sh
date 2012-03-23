@@ -19,6 +19,7 @@ link emacs/.emacs ~/.emacs
 link ssh/config ~/.ssh/config
 link git/.gitconfig ~/.gitconfig
 link git/.git-completion.sh ~/.git-completion.sh
+link bash/.dir_colors ~/.dir_colors
 link bash/.bash_jconf ~/.bash_jconf
 
 # bash profile setup
