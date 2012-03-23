@@ -24,7 +24,7 @@ link git/.gitconfig ~/.gitconfig
 link git/.git-completion.sh ~/.git-completion.sh
 link bash/.dir_colors ~/.dir_colors
 link bash/.bash_jconf ~/.bash_jconf
-
+link bin/s /usr/local/bin/s
 
 # bash profile setup
 
@@ -34,7 +34,6 @@ function set_snip {
     fi
 }
 
-set_snip "export JCONF=$JCONF"
 set_snip "[ -f ~/.bash_jconf ] && source ~/.bash_jconf"
 
 source ~/.bash_profile
