@@ -1,3 +1,7 @@
+if [ $JCONF ]; then
+   export PATH=$PATH:$JCONF/bin
+fi
+
 # alias
 
 alias la="ls -la"

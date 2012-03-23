@@ -1,0 +1,12 @@
+#!/bin/sh
+
+N=$1
+if [ $N ]; then
+
+    if ! echo $N | grep "\." >/dev/null; then
+        N=142.$N
+    fi
+
+    shift
+    ssh root@10.2.$N $*
+fi

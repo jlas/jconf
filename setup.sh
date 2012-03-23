@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# path to the jconf directory
+export JCONF="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
 function link {
 
     SRC=$1
@@ -10,7 +13,7 @@ function link {
     fi
 
     if ! [ -L "$NEW" ]; then
-	ln -s $(pwd)/$SRC $NEW
+	ln -s $JCONF/$SRC $NEW
     fi
 }
 
@@ -22,11 +25,16 @@ link git/.git-completion.sh ~/.git-completion.sh
 link bash/.dir_colors ~/.dir_colors
 link bash/.bash_jconf ~/.bash_jconf
 
-# bash profile setup
-SNIP="[ -f ~/.bash_jconf ] && source ~/.bash_jconf"
 
-if ! grep "$SNIP" ~/.bash_profile >/dev/null; then
-    echo $SNIP >> ~/.bash_profile
-fi
+# bash profile setup
+
+function set_snip {
+    if ! grep "$1" ~/.bash_profile >/dev/null; then
+        echo $1 >> ~/.bash_profile
+    fi
+}
+
+set_snip "export JCONF=$JCONF"
+set_snip "[ -f ~/.bash_jconf ] && source ~/.bash_jconf"
 
 source ~/.bash_profile
