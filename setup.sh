@@ -19,12 +19,15 @@ function link {
 
 link emacs/.custom_emacs ~/.custom_emacs
 link emacs/.emacs ~/.emacs
-link ssh/config ~/.ssh/config
 link git/.gitconfig ~/.gitconfig
 link git/.git-completion.sh ~/.git-completion.sh
 link bash/.dir_colors ~/.dir_colors
 link bash/.bash_jconf ~/.bash_jconf
 link bin/s /usr/local/bin/s
+
+# special ssh setup
+link ssh/config ~/.ssh/config
+chmod 600 $JCONF/ssh/config
 
 # bash profile setup
 
