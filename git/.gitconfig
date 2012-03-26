@@ -40,3 +40,6 @@
 [user]
   name = juanl
   email = juan.lasheras@asti-usa.com
+
+[push]
+  default = tracking
