@@ -1,6 +1,15 @@
+#!/bin/sh
+
+# path to the jconf directory
+if [[ -h "${BASH_SOURCE[0]}" ]]; then
+    export JCONF=$(dirname $(cd -L $(dirname $(readlink "${BASH_SOURCE[0]}")) && pwd))
+fi
+
 # alias
 
 alias la="ls -la"
+alias g="git"
+alias e="emacs"
 
 # git completion stuff
 

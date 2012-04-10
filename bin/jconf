@@ -1,0 +1,56 @@
+#!/bin/sh
+
+USAGE="usage: $(basename $0) [options] [commands]"
+
+function usage {
+    echo $USAGE
+    echo
+    echo "== Commands =="
+    echo "  update          Update the jconf repository."
+    echo "  setup           Run the setup script."
+    echo
+    echo "== Options =="
+    echo "  -h, --help      Print this help."
+    echo
+}
+
+function setup {
+    sh $JCONF/setup.sh
+}
+
+function update {
+    pushd $JCONF >/dev/null
+    git pull
+    popd >/dev/null
+}
+
+# ensure that jconf directory exists
+if ! { [ -d $JCONF ] && ls -a $JCONF | grep "\.git" >/dev/null; }; then
+    echo "ERROR: jconf directory: '$JCONF' doesn't exist or invalid?"
+    exit 1
+fi
+
+[[ $# -eq 0 ]] && { usage; exit; }
+
+while [ "$1" != "" ]; do
+    case $1 in
+        -h | --help )
+            usage
+            exit 0
+            ;;
+        update )
+            update
+            exit
+            ;;
+        setup )
+            setup
+            exit
+            ;;
+        * )
+            echo "Invalid command or option."
+            usage
+            exit 1
+            ;;
+    esac
+    shift
+done

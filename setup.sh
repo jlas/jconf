@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # path to the jconf directory
-export JCONF="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+export JCONF=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 
 function link {
 
@@ -29,6 +29,7 @@ if ! [ -d ~/bin ]; then
     mkdir ~/bin
 fi
 link bin/s ~/bin/s
+link bin/jconf ~/bin/jconf
 
 # special ssh setup
 link ssh/config ~/.ssh/config
