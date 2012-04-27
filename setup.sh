@@ -12,9 +12,11 @@ function link {
 	mv -f $NEW $NEW.bak
     fi
 
-    if ! [ -L "$NEW" ]; then
-	ln -s $JCONF/$SRC $NEW
+    if [ -L "$NEW" ]; then
+	rm -rf $NEW
     fi
+
+    ln -s $JCONF/$SRC $NEW
 }
 
 link emacs/.custom_emacs ~/.custom_emacs
