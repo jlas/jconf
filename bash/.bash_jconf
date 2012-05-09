@@ -5,6 +5,8 @@ if [[ -h "${BASH_SOURCE[0]}" ]]; then
     export JCONF=$(dirname $(cd -L $(dirname $(readlink "${BASH_SOURCE[0]}")) && pwd))
 fi
 
+export EDITOR=emacs
+
 # alias
 
 alias la="ls -la"
