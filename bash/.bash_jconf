@@ -23,3 +23,8 @@ GIT_PS1_SHOWDIRTYSTATE=1
 GIT_PS1_SHOWSTASHSTATE=1
 GIT_PS1_SHOWUNTRACKEDFILES=
 GIT_PS1_SHOWUPSTREAM=
+
+# key bindings
+
+bind '"\eOC":forward-word'
+bind '"\eOD":backward-word'
