@@ -25,6 +25,9 @@ GIT_PS1_SHOWUNTRACKEDFILES=
 GIT_PS1_SHOWUPSTREAM=
 
 # key bindings
-
-bind '"\eOC":forward-word'
-bind '"\eOD":backward-word'
+bind '"\e[1;5C": forward-word'
+bind '"\e[1;5D": backward-word'
+bind '"\e[5C": forward-word'
+bind '"\e[5D": backward-word'
+bind '"\e\e[C": forward-word'
+bind '"\e\e[D": backward-word'
