@@ -1,0 +1,26 @@
+#!/bin/sh
+
+DIR=$*
+
+if [ "$DIR" == "" ]; then
+   DIR=./
+fi
+
+PF=/tmp/pfwinner
+echo "" > $PF
+
+for l in `pyflakes $DIR 2>/dev/null | cut -d " " -f 1`; do
+    FILE=$(echo $l | cut -d ":" -f 1)
+    LINE=$(echo $l | cut -d ":" -f 2)
+    AUTHOR=$(git blame -p -L $LINE,$LINE $FILE | grep author-mail | cut -d " " -f 2)
+
+    if ! grep $AUTHOR $PF >/dev/null; then
+        echo 0 $AUTHOR >> $PF
+    fi
+
+    N=$(grep $AUTHOR $PF | grep -o "^[0-9]\+")
+    N2=$(($N+1))
+    sed -i "s/$N $AUTHOR/$N2 $AUTHOR/" $PF
+done
+
+cat $PF | sort -n -r
