@@ -1,5 +1,11 @@
 #!/bin/sh
 
+if echo $* | grep "\-h" >/dev/null; then
+    echo "usage: $(basename $0) [dir1 [dir2] ..]"
+    echo "Run pyflakes and lookup commiter with git blame in dirs. Default dir is cwd."
+    exit
+fi
+
 DIR=$*
 
 if [ "$DIR" == "" ]; then
