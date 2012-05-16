@@ -30,8 +30,10 @@ link bash/.bash_jconf ~/.bash_jconf
 if ! [ -d ~/bin ]; then
     mkdir ~/bin
 fi
-link bin/s ~/bin/s
-link bin/jconf ~/bin/jconf
+
+for script in `ls $JCONF/bin`; do
+    link bin/$script ~/bin/$script
+done
 
 # special ssh setup
 link ssh/config ~/.ssh/config
