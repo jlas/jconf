@@ -17,10 +17,10 @@ alias e="emacs"
 
 source ~/.git-completion.sh
 
-PS1='[\[\e[4;37m\]\u\[\e[0m\]@\h \[\e[1;36m\]\W\[\e[0m\]$(__git_ps1 " (%s)")]$ '
+PS1='[\[\e[4;37m\]\u\[\e[0m\]@\h \[\e[1;36m\]\W\[\e[0m\]]$ '
 
-GIT_PS1_SHOWDIRTYSTATE=1
-GIT_PS1_SHOWSTASHSTATE=1
+GIT_PS1_SHOWDIRTYSTATE=
+GIT_PS1_SHOWSTASHSTATE=
 GIT_PS1_SHOWUNTRACKEDFILES=
 GIT_PS1_SHOWUPSTREAM=
 
