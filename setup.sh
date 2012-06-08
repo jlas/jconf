@@ -26,6 +26,12 @@ link git/.git-completion.sh ~/.git-completion.sh
 link bash/.dir_colors ~/.dir_colors
 link bash/.bash_jconf ~/.bash_jconf
 
+if [ -d ~/.ipython ]; then
+    for conf in `ls $JCONF/python/ipython`; do
+        link python/ipython/$conf ~/.ipython/$conf
+    done
+fi
+
 # scripts
 if ! [ -d ~/bin ]; then
     mkdir ~/bin
