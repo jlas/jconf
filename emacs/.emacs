@@ -8,6 +8,9 @@
 
 (setq-default indent-tabs-mode nil)
 (column-number-mode 1)
+(global-set-key (kbd "C-r") 'isearch-backward-regexp)
+(global-set-key (kbd "C-s") 'isearch-forward-regexp)
+(global-set-key (kbd "M-%") 'query-replace-regexp)
 
 ;; search for word at cursor
 (defun my-isearch-word-at-point ()
@@ -38,6 +41,7 @@
 (add-to-list 'load-path (expand-file-name "~/.custom_emacs"))
 (load "python-mode.el")
 (load "psvn.el")
+(load "fast-resize.el")
 
 (require 'color-theme)
 (color-theme-initialize)
