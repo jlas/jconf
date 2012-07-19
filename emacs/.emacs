@@ -42,6 +42,7 @@
 (load "python-mode.el")
 (load "psvn.el")
 (load "fast-resize.el")
+(load "highlight-80+.el")
 
 (require 'color-theme)
 (color-theme-initialize)
@@ -54,12 +55,9 @@
 
 ;; In XEmacs syntax highlighting should be enabled automatically.  In GNU
 ;; Emacs you may have to add these lines to your ~/.emacs file:
-;(global-font-lock-mode t)
-;(setq font-lock-maximum-decoration t)
-
-;; turn on font-lock mode
 ;(when (fboundp 'global-font-lock-mode)
 (global-font-lock-mode t)
+(setq font-lock-maximum-decoration t)
 
 ;; enable visual feedback on selections
 ;(setq transient-mark-mode t)
