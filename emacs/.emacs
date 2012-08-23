@@ -40,6 +40,7 @@
 
 (add-to-list 'load-path (expand-file-name "~/.custom_emacs"))
 (load "python-mode.el")
+(load "javascript.el")
 (load "psvn.el")
 (load "fast-resize.el")
 (load "highlight-80+.el")
