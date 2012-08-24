@@ -49,10 +49,16 @@
 (color-theme-initialize)
 (color-theme-euphoria)
 
+;; auto load python mode
 (setq auto-mode-alist (cons '("\\.py$" . python-mode) auto-mode-alist))
 (setq interpreter-mode-alist (cons '("python" . python-mode)
                                      interpreter-mode-alist))
 (autoload 'python-mode "python-mode" "Python editing mode." t)
+
+;; auto load javascript mode
+(add-to-list 'auto-mode-alist '("\\.js\\'" . javascript-mode))
+(autoload 'javascript-mode "javascript" nil t)
+
 
 ;; In XEmacs syntax highlighting should be enabled automatically.  In GNU
 ;; Emacs you may have to add these lines to your ~/.emacs file:
