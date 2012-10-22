@@ -1,2 +1,4 @@
-#UserKnownHostsFile       /dev/null
+
+UserKnownHostsFile       /dev/null
 StrictHostKeyChecking    no
+
