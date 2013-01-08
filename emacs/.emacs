@@ -59,6 +59,25 @@
 (add-to-list 'auto-mode-alist '("\\.js\\'" . javascript-mode))
 (autoload 'javascript-mode "javascript" nil t)
 
+;; auto load cheetah tmpl as html
+(add-to-list 'auto-mode-alist '("\\.tmpl\\'" . html-mode))
+
+;; auto load flymake mode with pyflakes
+;; (require 'compile)
+;; (require 'flymake)
+;; (when (load "flymake" t) 
+;;   (defun flymake-pyflakes-init () 
+;;     (let* ((temp-file (flymake-init-create-temp-buffer-copy 
+;;                        'flymake-create-temp-inplace)) 
+;;            (local-file (file-relative-name 
+;;                         temp-file 
+;;                         (file-name-directory buffer-file-name)))) 
+;;       (list "pyflakes" (list local-file)))) 
+
+;;   (add-to-list 'flymake-allowed-file-name-masks 
+;;                '("\\.py\\'" flymake-pyflakes-init))) 
+
+;; (add-hook 'find-file-hook 'flymake-find-file-hook)
 
 ;; In XEmacs syntax highlighting should be enabled automatically.  In GNU
 ;; Emacs you may have to add these lines to your ~/.emacs file:
