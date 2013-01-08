@@ -20,6 +20,7 @@ function link {
 }
 
 link emacs/.custom_emacs ~/.custom_emacs
+link emacs/.nxml-mode-20041004 ~/.nxml-mode-20041004
 link emacs/.emacs ~/.emacs
 link git/.gitconfig ~/.gitconfig
 link git/.git-completion.sh ~/.git-completion.sh

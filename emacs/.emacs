@@ -59,8 +59,12 @@
 (add-to-list 'auto-mode-alist '("\\.js\\'" . javascript-mode))
 (autoload 'javascript-mode "javascript" nil t)
 
-;; auto load cheetah tmpl as html
-(add-to-list 'auto-mode-alist '("\\.tmpl\\'" . html-mode))
+;; auto load nxml mode
+(load "~/.nxml-mode-20041004/rng-auto.el")
+(setq auto-mode-alist
+      (cons '("\\.\\(xml\\|xsl\\|rng\\|xhtml\\|tmpl\\)\\'" . nxml-mode)
+            auto-mode-alist))
+
 
 ;; auto load flymake mode with pyflakes
 ;; (require 'compile)
