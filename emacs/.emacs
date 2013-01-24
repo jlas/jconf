@@ -11,6 +11,7 @@
 (global-set-key (kbd "C-r") 'isearch-backward-regexp)
 (global-set-key (kbd "C-s") 'isearch-forward-regexp)
 (global-set-key (kbd "M-%") 'query-replace-regexp)
+(global-set-key (kbd "M-g") 'goto-line)
 
 ;; search for word at cursor
 (defun my-isearch-word-at-point ()
