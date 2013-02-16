@@ -53,6 +53,7 @@
 (load "psvn.el")
 (load "fast-resize.el")
 (load "highlight-80+.el")
+(load "number-sequence.el")
 
 (require 'color-theme)
 (color-theme-initialize)
