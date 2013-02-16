@@ -58,6 +58,8 @@
 (color-theme-initialize)
 (color-theme-euphoria)
 
+(highlight-80+-mode 1)
+
 ;; auto load python mode
 (setq auto-mode-alist (cons '("\\.py$" . python-mode) auto-mode-alist))
 (setq interpreter-mode-alist (cons '("python" . python-mode)
