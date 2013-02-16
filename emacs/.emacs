@@ -3,6 +3,14 @@
 ;;; uncomment this line to disable loading of "default.el" at startup
 ;; (setq inhibit-default-init t)
 
+(defun my-generate-tab-stops (&optional width max)
+  "Return a sequence suitable for `tab-stop-list'."
+  (interactive "nwidth: \nnmax: \n")
+  (let* ((max-column (or max 200))
+         (tab-width (or width tab-width))
+         (count (/ max-column tab-width)))
+    (number-sequence tab-width (* tab-width count) tab-width)))
+
 (global-set-key [delete] 'delete-char)
 (global-set-key [M-delete] 'kill-word)
 
