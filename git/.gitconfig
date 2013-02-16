@@ -39,8 +39,8 @@
   ign = ls-files -o -i --exclude-standard
 
 [user]
-  name = juanl
-  email = juan.lasheras@asti-usa.com
+  name = jlas
+  email = juan.lasheras@gmail.com
 
 [push]
   default = tracking

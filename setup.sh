@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # path to the jconf directory
 export JCONF=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)

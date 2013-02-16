@@ -10,6 +10,8 @@ export EDITOR=emacs
 # alias
 
 alias la="ls -la"
+alias ll="ls -l"
+alias tf="tail -f"
 alias g="git"
 alias e="emacs"
 alias tf="tail -f"
