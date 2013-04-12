@@ -43,7 +43,6 @@
 
 (add-hook 'isearch-mode-hook 'my-isearch-yank-word-hook)
 
-
 (add-to-list 'load-path (expand-file-name "~/.custom_emacs"))
 (load "python-mode.el")
 (load "javascript.el")
@@ -74,6 +73,26 @@
       (cons '("\\.\\(xml\\|xsl\\|rng\\|xhtml\\|tmpl\\)\\'" . nxml-mode)
             auto-mode-alist))
 
+;; sort python definitions in a source file
+;; requires python-mode
+(defun python-sort-defs (reverse beg end)
+  (interactive "P\nr")
+  (save-excursion
+    (save-restriction
+      (narrow-to-region beg end)
+      (goto-char (point-min))
+      (sort-subr reverse
+                 (function
+                  (lambda ()
+                    (while (and (not (eobp)) (looking-at paragraph-separate))
+                      (forward-line 1))))
+                 'python-end-of-block-must-move))))
+
+(defun python-end-of-block-must-move ()
+  (when (eq (point) (progn
+                      (py-end-of-def-or-class)
+                      (point)))
+    (forward-line 1)))
 
 ;; auto load flymake mode with pyflakes
 ;; (require 'compile)
