@@ -50,6 +50,7 @@
 (load "fast-resize.el")
 (load "highlight-80+.el")
 (load "number-sequence.el")
+(load "php-mode.el")
 
 (require 'color-theme)
 (color-theme-initialize)

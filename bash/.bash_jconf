@@ -5,6 +5,9 @@ if [[ -h "${BASH_SOURCE[0]}" ]]; then
     export JCONF=$(dirname $(cd -L $(dirname $(readlink "${BASH_SOURCE[0]}")) && pwd))
 fi
 
+# add user bin dir to path
+export PATH=~/bin:$PATH
+
 export EDITOR=emacs
 
 # alias
