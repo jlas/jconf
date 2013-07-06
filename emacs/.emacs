@@ -17,6 +17,7 @@
 (global-set-key (kbd "C-s") 'isearch-forward-regexp)
 (global-set-key (kbd "M-%") 'query-replace-regexp)
 (global-set-key (kbd "M-g") 'goto-line)
+(global-set-key (kbd "C-x t") 'dirtree)
 
 ;; search for word at cursor
 (defun my-isearch-word-at-point ()
@@ -52,10 +53,27 @@
 (load "number-sequence.el")
 (load "php-mode.el")
 
+;; tree
+(add-to-list 'load-path (expand-file-name "~/.custom_emacs/tree"))
+(load "imenu-tree.el")
+(load "tags-tree.el")
+(load "tree-mode.el")
+(autoload 'imenu-tree "imenu-tree" "Imenu tree" t)
+(autoload 'tags-tree "tags-tree" "TAGS tree" t)
+(eval-after-load "tree-widget"
+  '(if (boundp 'tree-widget-themes-load-path)
+       (add-to-list 'tree-widget-themes-load-path "~/.custom_emacs/tree")))
+
+;; dirtree
+(require 'windata)
+(autoload 'dirtree "dirtree" "Add directory to tree view" t)
+
+;; color theme
 (require 'color-theme)
 (color-theme-initialize)
 (color-theme-euphoria)
 
+;; highlight mode
 (highlight-80+-mode 1)
 
 ;; auto load python mode

@@ -19,6 +19,7 @@ alias g="git"
 alias e="emacs"
 alias tf="tail -f"
 alias jlint="jslint --white --vars --undef --sloppy --sub --nomen --plusplus --continue --bitwise --browser --predef=\"_\""
+alias rm-whitespace="gsed --in-place 's/[[:space:]]\+$//'"
 
 # git completion stuff
 
