@@ -1,0 +1,110 @@
+#!/bin/bash
+
+httpdconf=/opt/local/apache2/conf/httpd.conf
+usagestr="usage: $(basename $0) <module name>"
+
+function usage {
+    echo $usagestr
+    echo
+    echo "Enable or disable apache httpd modules."
+    echo
+    echo "<module name> should be the module name, or a portion of the module"
+    echo "name. The program will lookup all the matching modules in the httpd"
+    echo "config file and ask which one you would like to enable."
+    echo
+    echo "== Options =="
+    echo "  -h, --help      Print this help."
+    echo
+}
+
+# restart the httpd process if running
+function restart {
+    if pgrep httpd >/dev/null; then
+        echo Restarting httpd
+        sudo killall httpd
+        sleep 1
+        sudo httpd
+    fi
+}
+
+function query {
+    modname=$(grep -E -m1 "LoadModule[ ]+$1" $httpdconf | tr -s " " " " | cut -d " " -f 2)
+
+    if [[ "$modname" == "" ]]; then
+        echo "Can't find a module containing the string '$1'"
+        exit 1
+    fi
+
+    mods=$(grep -E "LoadModule[ ]+${modname}" $httpdconf)
+
+    echo
+    echo "Found module ${modname}:"
+    echo
+
+    # separate by newlines
+    oldifs=$IFS
+    IFS=$'\n'
+
+    # display numbered list of modules
+    idx=0
+    for mod in $mods; do
+        idx=$(($idx+1))
+        s=$(echo $mod | tr -s " " " " | cut -d " " -f 3)
+        if echo $mod | grep "^#" >/dev/null; then
+            echo "$idx) $s"
+        else
+            echo "$idx) $s [on]"
+        fi
+    done
+
+    # restore old field separator
+    IFS=$oldifs
+
+    # prompt user to select which module should be toggled on/off
+    echo
+    read -p "Toggle which module [1-$idx]? " modchoice
+    while [[ "$modchoice" == "" ]] || [[ $modchoice -gt $idx ]] || [[ $modchoice -lt 1 ]]; do
+        read -p "Please choose a value between 1 and $idx: " modchoice
+    done
+
+    # separate by newlines
+    oldifs=$IFS
+    IFS=$'\n'
+
+    # toggle the selected module and turn off any others if they're activiated
+    idx=0
+    for mod in $mods; do
+        idx=$(($idx+1))
+        s=$(echo $mod | tr -s " " " " | cut -d " " -f 3)
+        if echo $mod | grep "^#" >/dev/null; then
+            if [[ $idx -eq $modchoice ]]; then
+                linenum=$(grep -n "$mod" $httpdconf | cut -d ":" -f 1)
+                sudo gsed --in-place "$linenum s/^#\(.*\)/\1/" $httpdconf
+            fi
+        else
+            linenum=$(grep -n "$mod" $httpdconf | cut -d ":" -f 1)
+            sudo gsed --in-place "$linenum s/.*/#&/" $httpdconf
+        fi
+    done
+
+    # restore old field separator
+    IFS=$oldifs
+
+    restart
+}
+
+[[ $# -eq 0 ]] && { usage; exit; }
+
+while [[ "$1" != "" ]]; do
+    case $1 in
+        -h | --help )
+            usage
+            exit 0
+            ;;
+        * )
+            query $1
+            exit 0
+            ;;
+    esac
+    shift
+done
