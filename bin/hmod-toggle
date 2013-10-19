@@ -10,7 +10,7 @@ function usage {
     echo
     echo "<module name> should be the module name, or a portion of the module"
     echo "name. The program will lookup all the matching modules in the httpd"
-    echo "config file and ask which one you would like to enable."
+    echo "config file and ask which one you would like to toggle."
     echo
     echo "== Options =="
     echo "  -h, --help      Print this help."
