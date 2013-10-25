@@ -24,6 +24,7 @@ link emacs/.nxml-mode-20041004 ~/.nxml-mode-20041004
 link emacs/.emacs ~/.emacs
 link git/.gitconfig ~/.gitconfig
 link git/.git-completion.sh ~/.git-completion.sh
+link bash/.inputrc ~/.inputrc
 link bash/.dir_colors ~/.dir_colors
 link bash/.bash_jconf ~/.bash_jconf
 
