@@ -21,6 +21,12 @@ alias tf="tail -f"
 alias jlint="jslint --white --vars --undef --sloppy --sub --nomen --plusplus --continue --bitwise --browser --predef=\"_\""
 alias rm-whitespace="gsed --in-place 's/[[:space:]]\+$//'"
 
+# cd out and back into current dir
+alias cdb="cd .. && cd -"
+
+# print a simple directory tree
+alias dtree="ls -R | grep ':' | sed -e 's/://' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
+
 # git completion stuff
 
 source ~/.git-completion.sh
