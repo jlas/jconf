@@ -1,0 +1,63 @@
+#!/bin/bash
+
+for program in grep tr cut sed; do
+    if ! type $program >/dev/null; then
+        echo "Missing dependency: $program. Quitting."
+        exit 1
+    fi
+done
+
+looped=""
+usagestr="usage: $(basename $0) [host]"
+
+function usage {
+    echo "$usagestr"
+    echo
+    echo "Loopback/unloopback a host using /etc/hosts"
+    echo
+    echo "Run the script without any arguments for a list of Looped-back hosts"
+    echo
+    echo "Otherwise, run the script with the hostname to loopback or unloopback"
+}
+
+# grep for hosts in /etc/hosts alias to localhost
+function _lookup_looped {
+    looped=$(grep -E "^127\.0\.0\.1[ ]+.*$" /etc/hosts | tr -s " " | cut -d " " -f 2)
+}
+
+# print list of currently loopedback hosts
+function check {
+    _lookup_looped
+    if [[ "$looped" == "" ]]; then
+        echo "No hosts looped-back right now."
+    else
+        echo "Looped-back hosts:"
+        echo "$looped"
+    fi
+}
+
+# add/remove host entry from /etc/hosts
+function toggle {
+    _lookup_looped
+    if ! echo $looped | grep $1 >/dev/null; then
+        echo "127.0.0.1 $1" >> /etc/hosts
+    else
+        sed --in-place "/127\.0\.0\.1[ ]\+$1/ d" /etc/hosts
+    fi
+}
+
+[[ $# -eq 0 ]] && { check; exit; }
+
+while [[ "$1" != "" ]]; do
+    case $1 in
+        -h | --help )
+            usage
+            exit 0
+            ;;
+        * )
+            toggle $1
+            exit 0
+            ;;
+    esac
+    shift
+done
