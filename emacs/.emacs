@@ -1,12 +1,22 @@
 ;; .emacs
 
+(load (expand-file-name "~/quicklisp/slime-helper.el"))
+;; Replace "sbcl" with the path to your implementation
+(setq inferior-lisp-program "sbcl")
+
 ;;; uncomment this line to disable loading of "default.el" at startup
 ;; (setq inhibit-default-init t)
 
+;; javascript tab-width
 (defun my-edit-tab-width (width)
   "Change the width of tabs"
   (interactive "nwidth: \n")
   (setq javascript-indent-level width))
+
+;; load packages using marmalade
+(require 'package)
+(add-to-list 'package-archives
+             '("marmalade" . "http://marmalade-repo.org/packages/") t)
 
 (global-set-key [delete] 'delete-char)
 (global-set-key [M-delete] 'kill-word)
@@ -116,17 +126,17 @@
 ;; auto load flymake mode with pyflakes
 ;; (require 'compile)
 ;; (require 'flymake)
-;; (when (load "flymake" t) 
-;;   (defun flymake-pyflakes-init () 
-;;     (let* ((temp-file (flymake-init-create-temp-buffer-copy 
-;;                        'flymake-create-temp-inplace)) 
-;;            (local-file (file-relative-name 
-;;                         temp-file 
-;;                         (file-name-directory buffer-file-name)))) 
-;;       (list "pyflakes" (list local-file)))) 
+;; (when (load "flymake" t)
+;;   (defun flymake-pyflakes-init ()
+;;     (let* ((temp-file (flymake-init-create-temp-buffer-copy
+;;                        'flymake-create-temp-inplace))
+;;            (local-file (file-relative-name
+;;                         temp-file
+;;                         (file-name-directory buffer-file-name))))
+;;       (list "pyflakes" (list local-file))))
 
-;;   (add-to-list 'flymake-allowed-file-name-masks 
-;;                '("\\.py\\'" flymake-pyflakes-init))) 
+;;   (add-to-list 'flymake-allowed-file-name-masks
+;;                '("\\.py\\'" flymake-pyflakes-init)))
 
 ;; (add-hook 'find-file-hook 'flymake-find-file-hook)
 

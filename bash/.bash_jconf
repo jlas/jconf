@@ -20,6 +20,8 @@ alias e="emacs"
 alias tf="tail -f"
 alias jlint="jslint --white --vars --undef --sloppy --sub --nomen --plusplus --continue --bitwise --browser --predef=\"_\""
 alias rm-whitespace="gsed --in-place 's/[[:space:]]\+$//'"
+alias sitesuck="wget -m -p -E -k -K -np -nc --random-wait -e robots=off"
+#--recursive --no-clobber --page-requisites --html-extension --convert-links --restrict-file-names=windows --domains website.org --no-parent
 
 # cd out and back into current dir
 alias cdb="cd .. && cd -"
