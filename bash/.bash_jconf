@@ -22,6 +22,7 @@ alias jlint="jslint --white --vars --undef --sloppy --sub --nomen --plusplus --c
 alias rm-whitespace="gsed --in-place 's/[[:space:]]\+$//'"
 alias sitesuck="wget -m -p -E -k -K -np -nc --random-wait -e robots=off"
 #--recursive --no-clobber --page-requisites --html-extension --convert-links --restrict-file-names=windows --domains website.org --no-parent
+alias gpp="git pull && git push"
 
 # cd out and back into current dir
 alias cdb="cd .. && cd -"

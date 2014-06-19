@@ -1,8 +1,10 @@
 ;; .emacs
 
-(load (expand-file-name "~/quicklisp/slime-helper.el"))
-;; Replace "sbcl" with the path to your implementation
-(setq inferior-lisp-program "sbcl")
+(let ((slimefile (expand-file-name "~/quicklisp/slime-helper.el")))
+  (if (file-exists-p slimefile)
+      ;; Replace "sbcl" with the path to your implementation
+      ((load slimefile)
+       (setq inferior-lisp-program "sbcl"))))
 
 ;;; uncomment this line to disable loading of "default.el" at startup
 ;; (setq inhibit-default-init t)
