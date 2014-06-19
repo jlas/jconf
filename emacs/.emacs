@@ -63,6 +63,10 @@
 (load "number-sequence.el")
 (load "php-mode.el")
 
+;; windmove
+(when (fboundp 'windmove-default-keybindings)
+  (windmove-default-keybindings))
+
 ;; tree
 (add-to-list 'load-path (expand-file-name "~/.custom_emacs/tree"))
 (load "imenu-tree.el")
