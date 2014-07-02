@@ -1,0 +1,81 @@
+#!/usr/bin/env python
+
+import csv
+from cStringIO import StringIO
+import re
+import sys
+import time
+import xmlrpclib
+
+TSPAGE = "TimeClock"
+
+DATE = "Date"
+IN = "In"
+OUT = "Out"
+BREAK = "Break"
+TOTAL = "Total"
+ROW = ["", DATE, IN, OUT, BREAK, TOTAL, ""]
+
+srcwiki = xmlrpclib.ServerProxy("http://wiki.juanl.org/?action=xmlrpc2")
+auth = srcwiki.getAuthToken('xmlrpc', 'password')
+
+def put(text):
+    mcall = xmlrpclib.MultiCall(srcwiki)
+    mcall.applyAuthToken(auth)
+    mcall.putPage(TSPAGE, text)
+    mcall()
+
+def main(action):
+    in_sheet = StringIO(srcwiki.getPage(TSPAGE).replace("||","|"))
+    out_sheet = StringIO()
+
+    dr = csv.DictReader(in_sheet, ROW, delimiter="|")
+    dw = csv.DictWriter(out_sheet, ROW, delimiter="|")
+    dw.writeheader()
+
+    today = time.strftime('%x')
+
+    dr.next()  # headers
+    most_recent = dr.next()
+    if most_recent[DATE] != today:
+        d = {
+            DATE: today,
+            IN: " ",
+            OUT: " ",
+            BREAK: " ",
+            TOTAL: " "
+            }
+    else:
+        d = most_recent
+
+    action(d)
+    dw.writerow(d)
+    out_sheet.write(in_sheet.read())
+    put(out_sheet.getvalue().replace("|","||").strip())
+
+def checkin(d):
+    d[IN] = time.strftime("%H:%M")
+
+def checkout(d):
+    d[OUT] = time.strftime("%H:%M")
+
+def _break(d):
+    time = raw_input("How long was your break (in minutes)? ")
+    try:
+        int(time)
+        d[BREAK] = time
+    except ValueError, e:
+        print "That is not a valid number of minutes"
+
+actions = dict([(k.lower(), v) for k, v in [
+    (IN, checkin),
+    (OUT, checkout),
+    (BREAK, _break)]])
+
+if __name__ == "__main__":
+    if len(sys.argv) < 2:
+        print "usage: %s <in|out|break>" % sys.argv[0]
+        sys.exit(1)
+
+    action = sys.argv[1].lower()
+    main(actions[action])
