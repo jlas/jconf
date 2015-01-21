@@ -44,3 +44,5 @@
 
 [push]
   default = tracking
+[branch]
+  autosetuprebase = always
