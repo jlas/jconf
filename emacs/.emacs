@@ -55,13 +55,15 @@
 (add-hook 'isearch-mode-hook 'my-isearch-yank-word-hook)
 
 (add-to-list 'load-path (expand-file-name "~/.custom_emacs"))
-(load "python-mode.el")
-(load "javascript.el")
-(load "psvn.el")
 (load "fast-resize.el")
 (load "highlight-80+.el")
 (load "number-sequence.el")
-(load "php-mode.el")
+;;(load "php-mode.el")
+;;(load "psvn.el")
+
+;; kdb+/q
+(autoload 'q-mode "q-mode")
+(add-to-list 'auto-mode-alist '("\\.[kq]\\'" . q-mode))
 
 ;; windmove
 (when (fboundp 'windmove-default-keybindings)
