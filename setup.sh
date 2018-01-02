@@ -28,12 +28,6 @@ link bash/.inputrc ~/.inputrc
 link bash/.dir_colors ~/.dir_colors
 link bash/.bash_jconf ~/.bash_jconf
 
-if [ -d ~/.ipython ]; then
-    for conf in `ls $JCONF/python/ipython`; do
-        link python/ipython/$conf ~/.ipython/$conf
-    done
-fi
-
 # scripts
 if ! [ -d ~/bin ]; then
     mkdir ~/bin
@@ -42,10 +36,6 @@ fi
 for script in `ls $JCONF/bin`; do
     link bin/$script ~/bin/$script
 done
-
-# special ssh setup
-link ssh/config ~/.ssh/config
-chmod 600 $JCONF/ssh/config
 
 # bash profile setup
 
