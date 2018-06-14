@@ -92,12 +92,6 @@
 ;; highlight mode
 (highlight-80+-mode 1)
 
-;; auto load python mode
-(setq auto-mode-alist (cons '("\\.py$" . python-mode) auto-mode-alist))
-(setq interpreter-mode-alist (cons '("python" . python-mode)
-                                     interpreter-mode-alist))
-(autoload 'python-mode "python-mode" "Python editing mode." t)
-
 ;; auto load javascript mode
 (add-to-list 'auto-mode-alist '("\\.js\\'" . javascript-mode))
 (autoload 'javascript-mode "javascript" nil t)
