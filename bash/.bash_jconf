@@ -23,6 +23,8 @@ alias rm-whitespace="gsed --in-place 's/[[:space:]]\+$//'"
 alias sitesuck="wget -m -p -E -k -K -np -nc --random-wait -e robots=off"
 #--recursive --no-clobber --page-requisites --html-extension --convert-links --restrict-file-names=windows --domains website.org --no-parent
 alias gpp="git pull && git push"
+alias docker-rm-all='docker rm --force $(docker ps -aq)'
+alias docker-rmi-all='docker rmi --force $(docker image ls -q)'
 
 # cd out and back into current dir
 alias cdb="cd .. && cd -"
